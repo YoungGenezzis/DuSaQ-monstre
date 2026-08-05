@@ -1,80 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Visual Novel</title>
 
-<link rel="stylesheet" href="/estilizacao/umbotao.css">
-
+<link rel="stylesheet" href="/estilizacao/main.css">
 </head>
 
 <body>
 
-<!--=============================================
-
+<!-- ==================================================
 IMAGEM DE FUNDO
 
-Troque apenas o endereço abaixo.
+Troque o link abaixo pela imagem desejada.
 
 Exemplo:
-
 imagens/cenario1.jpg
+================================================== -->
 
-==============================================-->
-
-<div id="background"></div>
+<div id="background">im</div>
 
 
-<!--=============================================
-
+<!-- ==================================================
 MÚSICA
 
-Troque apenas o src abaixo.
+Troque o src abaixo pela música desejada.
 
 Exemplo:
-
 audio/musica.mp3
+================================================== -->
 
-==============================================-->
-
-<audio autoplay loop>
-
-<source src="" type="audio/mpeg">
-
+<audio id="bgm" autoplay loop>
+    <source src="" type="audio/mpeg">
 </audio>
-
 
 
 <div class="dialogo">
 
-<div id="texto"></div>
+    <div id="texto"></div>
+
+    <div class="botoesEscolha">
+
+        <!-- BOTÃO ESQUERDO -->
+
+        <a href="/paginas/provamatematica.html">
+            <button id="botaoEsquerdo">
+
+                Escolha 1
+
+            </button>
+        </a>
 
 
-<div class="botoes">
+        <!-- BOTÃO REINICIAR -->
 
-<a href="">
+        <button id="reiniciar">
 
-<button id="escolha">
+            Recomeçar diálogo
 
-Continuar
-
-</button>
-
-</a>
+        </button>
 
 
-<button id="reiniciar">
+        <!-- BOTÃO DIREITO -->
 
-Recomeçar diálogo
+        <a href="/paginas/provahistoria.html">
+            <button id="botaoDireito">
 
-</button>
+                Escolha 2
 
-</div>
+            </button>
+        </a>
+
+    </div>
 
 </div>
 
@@ -82,108 +81,111 @@ Recomeçar diálogo
 
 <script>
 
-/*==============================================
+/*========================================================
 
-ESCREVA CADA TRECHO DA HISTÓRIA.
+TEXTO DA NARRAÇÃO
 
-Cada item será mostrado separadamente.
+Escreva o texto abaixo.
 
-==============================================*/
+========================================================*/
 
 const dialogos=[
 
-`Primeira parte da história.`,
+`Primeira parte da história.
 
-`Segunda parte da história.`,
+Ela termina aqui.`,
 
-`Terceira parte.`,
+`Agora esta segunda parte aparece
+na mesma caixa.`,
 
-`Última parte.`
+`Depois aparece a terceira.`,
+
+`E assim por diante.`
 
 ];
 
 
+/*========================================================
 
-const velocidade=35;
+VELOCIDADE DA DIGITAÇÃO
 
-const texto=document.getElementById("texto");
+Quanto menor, mais rápido.
 
-const reiniciar=document.getElementById("reiniciar");
+========================================================*/
 
-let pagina=0;
+const velocidade = 35;
 
-let letra=0;
+const texto = document.getElementById("texto");
 
-reiniciar.style.display="none";
+const reiniciar = document.getElementById("reiniciar");
 
+let pagina = 0;
 
+let letra = 0;
+
+reiniciar.style.display = "none";
 
 function escrever(){
 
-if(letra<dialogos[pagina].length){
+    if(letra < dialogos[pagina].length){
 
-texto.innerHTML+=dialogos[pagina].charAt(letra);
+        texto.innerHTML += dialogos[pagina].charAt(letra);
 
-letra++;
+        letra++;
 
-setTimeout(escrever,velocidade);
+        setTimeout(escrever, velocidade);
+
+    }
+
+    else{
+
+        if(pagina < dialogos.length-1){
+
+            setTimeout(proximaPagina,1000);
+
+        }
+
+        else{
+
+            reiniciar.style.display="inline-block";
+
+        }
+
+    }
 
 }
-
-else{
-
-if(pagina<dialogos.length-1){
-
-setTimeout(proximaPagina,1000);
-
-}
-
-else{
-
-reiniciar.style.display="inline-block";
-
-}
-
-}
-
-}
-
-
 
 function proximaPagina(){
 
-texto.innerHTML="";
+    texto.innerHTML="";
 
-letra=0;
+    letra=0;
 
-pagina++;
+    pagina++;
 
-escrever();
+    escrever();
 
 }
 
-
-
 escrever();
-
-
 
 reiniciar.onclick=function(){
 
-pagina=0;
+    pagina=0;
 
-letra=0;
+    letra=0;
 
-texto.innerHTML="";
+    texto.innerHTML="";
 
-reiniciar.style.display="none";
+    reiniciar.style.display="none";
 
-escrever();
+    escrever();
+
+
 
 }
 
 </script>
 
 </body>
-
 </html>
