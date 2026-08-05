@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visual Novel</title>
+
+<link rel="stylesheet" href="/estilizacao/umbotao.css">
+
+</head>
+
+<body>
+
+<!--=============================================
+
+IMAGEM DE FUNDO
+
+Troque apenas o endereço abaixo.
+
+Exemplo:
+
+imagens/cenario1.jpg
+
+==============================================-->
+
+<div id="background"></div>
+
+
+<!--=============================================
+
+MÚSICA
+
+Troque apenas o src abaixo.
+
+Exemplo:
+
+audio/musica.mp3
+
+==============================================-->
+
+<audio autoplay loop>
+
+<source src="" type="audio/mpeg">
+
+</audio>
+
+
+
+<div class="dialogo">
+
+<div id="texto"></div>
+
+
+<div class="botoes">
+
+<a href="/paginas/cena4.html">
+
+<button id="escolha">
+
+Continuar
+
+</button>
+
+</a>
+
+
+<button id="reiniciar">
+
+Recomeçar diálogo
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/*==============================================
+
+ESCREVA CADA TRECHO DA HISTÓRIA.
+
+Cada item será mostrado separadamente.
+
+==============================================*/
+
+const dialogos=[
+
+`Primeira parte da história.`,
+
+`Segunda parte da história.`,
+
+`Terceira parte.`,
+
+`Última parte.`
+
+];
+
+
+
+const velocidade=35;
+
+const texto=document.getElementById("texto");
+
+const reiniciar=document.getElementById("reiniciar");
+
+let pagina=0;
+
+let letra=0;
+
+reiniciar.style.display="none";
+
+
+
+function escrever(){
+
+if(letra<dialogos[pagina].length){
+
+texto.innerHTML+=dialogos[pagina].charAt(letra);
+
+letra++;
+
+setTimeout(escrever,velocidade);
+
+}
+
+else{
+
+if(pagina<dialogos.length-1){
+
+setTimeout(proximaPagina,1000);
+
+}
+
+else{
+
+reiniciar.style.display="inline-block";
+
+}
+
+}
+
+}
+
+
+
+function proximaPagina(){
+
+texto.innerHTML="";
+
+letra=0;
+
+pagina++;
+
+escrever();
+
+}
+
+
+
+escrever();
+
+
+
+reiniciar.onclick=function(){
+
+pagina=0;
+
+letra=0;
+
+texto.innerHTML="";
+
+reiniciar.style.display="none";
+
+escrever();
+
+}
+
+</script>
+
+</body>
+
+</html>
