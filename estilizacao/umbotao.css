@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap');
+
 *{
     margin:0;
     padding:0;
@@ -12,7 +14,7 @@ body{
 
     font-family:"Segoe UI",Tahoma,sans-serif;
 
-    color:#F4F7FA;
+    color: #dcc9a9;;
 
 }
 
@@ -66,6 +68,8 @@ CAIXA DE DIÁLOGO
 ======================================*/
 
 .dialogo{
+    
+    font-family: "Comic Relief", system-ui;
 
     position:absolute;
 
@@ -80,9 +84,9 @@ CAIXA DE DIÁLOGO
     display:flex;
     flex-direction:column;
 
-    background:rgba(40,10,10,0.86);
+    background: #121312;
 
-    border-top:3px solid #C76A6A;
+    border-top:3px solid #b83a2d;
 
     backdrop-filter:blur(6px);
 
@@ -96,6 +100,7 @@ CAIXA DE DIÁLOGO
 ======================================*/
 
 #texto{
+    font-family: "Comic Relief", system-ui;
 
     flex:1;
 
@@ -116,7 +121,7 @@ CAIXA DE DIÁLOGO
 
 #texto::-webkit-scrollbar-thumb{
 
-    background:#8EA9C7;
+    background:#dcc9a9;
 
     border-radius:10px;
 
@@ -154,7 +159,7 @@ button{
 
     background:#8E2C2C;
 
-    color:#F5F5F5;
+    color:#dcc9a9;
 
     font-size:18px;
 
@@ -168,6 +173,9 @@ button{
 
 
 button:hover{
+    transform: rotate3d(-1, -1, 0, 8deg);
+
+    scale: 1.01;
 
     background:#B04040;
 
