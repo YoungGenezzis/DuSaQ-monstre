@@ -112,13 +112,15 @@ flex-direction:column;
 =========================*/
 
 #texto{
-font-size:23px;
+    font-family: "Comic Relief", system-ui;
 
-flex:1;
+    font-size:23px;
 
-overflow-y:auto;
+    flex:1;
 
-min-height:0;
+    overflow-y:auto;
+
+    min-height:0;
 
 }
 
@@ -186,9 +188,11 @@ button{
 
 
 button:hover{
+    transform: rotate3d(-1, -1, 0, 8deg);
 
-background:#B04040;
+    scale: 1.01;
 
+    background:#B04040;
 
 }
 
