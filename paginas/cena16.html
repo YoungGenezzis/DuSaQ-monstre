@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visual Novel</title>
+
+<link rel="stylesheet" href="../estilizacao/quatrobotoes.css">
+</head>
+
+<body>
+
+<!-- ==================================================
+IMAGEM DE FUNDO
+
+Troque o link abaixo pela imagem desejada.
+
+Exemplo:
+imagens/cenario1.jpg
+================================================== -->
+
+<div id="background">im</div>
+
+
+<!-- ==================================================
+MÚSICA
+
+Troque o src abaixo pela música desejada.
+
+Exemplo:
+audio/musica.mp3
+================================================== -->
+
+<audio id="bgm" autoplay loop>
+    <source src="../musicas/WhatsApp Audio 2026-08-07 at 05.51.22 (2).mp4" type="audio/mp4">
+</audio>
+
+
+<div class="dialogo">
+
+    <div id="texto"></div>
+<div class="botoesEscolha">
+
+    <div class="linhaBotoes">
+
+        <a href="cena17.html">
+            <button>irmãos winchester</button>
+        </a>
+
+        <a href="cena17.html">
+            <button>irmaos wayans</button>
+        </a>
+
+    </div>
+
+    <div class="linhaBotoes">
+
+        <a href="cena17.html"> 
+            <button>irmãos wright</button>
+        </a>
+
+        <button id="reiniciar">
+            Recomeçar diálogo
+        </button>
+
+        <a href="cena21.html">
+            <button>Santos Dumont</button>
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/*========================================================
+
+TEXTO DA NARRAÇÃO
+
+Escreva o texto abaixo.
+
+========================================================*/
+
+const dialogos=[
+
+`!prova de história!`,
+
+`que(quais) pessoa(s) inventou(aram) o avião que voa por conta própria?!`
+
+];
+
+
+/*========================================================
+
+VELOCIDADE DA DIGITAÇÃO
+
+Quanto menor, mais rápido.
+
+========================================================*/
+
+const velocidade = 35;
+
+const texto = document.getElementById("texto");
+
+const reiniciar = document.getElementById("reiniciar");
+
+let pagina = 0;
+
+let letra = 0;
+
+reiniciar.style.display = "none";
+
+function escrever(){
+
+    if(letra < dialogos[pagina].length){
+
+        texto.innerHTML += dialogos[pagina].charAt(letra);
+
+        letra++;
+
+        setTimeout(escrever, velocidade);
+
+    }
+
+    else{
+
+        if(pagina < dialogos.length-1){
+
+            setTimeout(proximaPagina,1000);
+
+        }
+
+        else{
+
+            reiniciar.style.display="inline-block";
+
+        }
+
+    }
+
+}
+
+function proximaPagina(){
+
+    texto.innerHTML="";
+
+    letra=0;
+
+    pagina++;
+
+    escrever();
+
+}
+
+escrever();
+
+reiniciar.onclick=function(){
+
+    pagina=0;
+
+    letra=0;
+
+    texto.innerHTML="";
+
+    reiniciar.style.display="none";
+
+    escrever();
+
+
+
+}
+
+</script>
+
+</body>
+</html>

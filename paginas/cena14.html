@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visual Novel</title>
+
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<!-- ==================================================
+IMAGEM DE FUNDO
+
+Troque o link abaixo pela imagem desejada.
+
+Exemplo:
+imagens/cenario1.jpg
+================================================== -->
+
+<div id="background">im</div>
+
+
+<!-- ==================================================
+MÚSICA
+
+Troque o src abaixo pela música desejada.
+
+Exemplo:
+audio/musica.mp3
+================================================== -->
+
+<audio id="bgm" autoplay loop>
+    <source src="../musicas/WhatsApp Audio 2026-08-07 at 05.49.24.mp4" type="audio/mp">
+</audio>
+
+
+<div class="dialogo">
+
+    <div id="texto"></div>
+
+    <div class="botoesEscolha">
+
+        <!-- BOTÃO ESQUERDO -->
+
+        <a href="cena15.html">
+            <button id="botaoEsquerdo">
+
+                Maçã
+
+            </button>
+        </a>
+
+
+        <!-- BOTÃO REINICIAR -->
+
+        <button id="reiniciar">
+
+            Recomeçar diálogo
+
+        </button>
+
+
+        <!-- BOTÃO DIREITO -->
+
+        <a href="cena15.html">
+            <button id="botaoDireito">
+
+                Banana
+
+            </button>
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/*========================================================
+
+TEXTO DA NARRAÇÃO
+
+Escreva o texto abaixo.
+
+========================================================*/
+
+const dialogos=[
+
+`de toda forma,`,
+
+` você desperta para mais uma semana, essa que infelizmente é uma semana de prova`,
+
+`e você se encontra grandemente atrasado então não tem tempo de comer seu café da manhã de 1.000 calorias, então vai ter que pegar algo rápido,`,
+
+`o que você vai pegar?`
+
+];
+
+
+/*========================================================
+
+VELOCIDADE DA DIGITAÇÃO
+
+Quanto menor, mais rápido.
+
+========================================================*/
+
+const velocidade = 35;
+
+const texto = document.getElementById("texto");
+
+const reiniciar = document.getElementById("reiniciar");
+
+let pagina = 0;
+
+let letra = 0;
+
+reiniciar.style.display = "none";
+
+function escrever(){
+
+    if(letra < dialogos[pagina].length){
+
+        texto.innerHTML += dialogos[pagina].charAt(letra);
+
+        letra++;
+
+        setTimeout(escrever, velocidade);
+
+    }
+
+    else{
+
+        if(pagina < dialogos.length-1){
+
+            setTimeout(proximaPagina,1000);
+
+        }
+
+        else{
+
+            reiniciar.style.display="inline-block";
+
+        }
+
+    }
+
+}
+
+function proximaPagina(){
+
+    texto.innerHTML="";
+
+    letra=0;
+
+    pagina++;
+
+    escrever();
+
+}
+
+escrever();
+
+reiniciar.onclick=function(){
+
+    pagina=0;
+
+    letra=0;
+
+    texto.innerHTML="";
+
+    reiniciar.style.display="none";
+
+    escrever();
+
+
+
+}
+
+</script>
+
+</body>
+</html>

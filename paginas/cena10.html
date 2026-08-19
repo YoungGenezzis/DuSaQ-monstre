@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visual Novel</title>
+
+<link rel="stylesheet" href="../estilizacao/umbotao.css">
+
+</head>
+
+<body>
+
+<!--=============================================
+
+IMAGEM DE FUNDO
+
+Troque apenas o endereço abaixo.
+
+Exemplo:
+
+imagens/cenario1.jpg
+
+==============================================-->
+
+<div id="background"></div>
+
+
+<!--=============================================
+
+MÚSICA
+
+Troque apenas o src abaixo.
+
+Exemplo:
+
+audio/musica.mp3
+
+==============================================-->
+
+<audio autoplay loop>
+
+<source src="/musicas/WhatsApp Audio 2026-08-07 at 05.51.21.mp4" type="audio/mpeg">
+
+</audio>
+
+
+
+<div class="dialogo">
+
+<div id="texto"></div>
+
+
+<div class="botoes">
+
+<a href="cena11.html">
+
+<button id="escolha">
+
+Continuar
+
+</button>
+
+</a>
+
+
+<button id="reiniciar">
+
+Recomeçar diálogo
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/*==============================================
+
+ESCREVA CADA TRECHO DA HISTÓRIA.
+
+Cada item será mostrado separadamente.
+
+==============================================*/
+
+const dialogos=[
+
+`Você segue a pequena criatura até uma sala relativamente ampla,`,
+
+` todas as diferentes criaturas já estão organizadas em seus cantos, observando vocês com uma cara julgadora, mesmo alguns não possuindo uma 'cara' muito bem dita nos seus parâmetros,`,
+
+`é melhor você se acostumar ao ambiente até o final do ano.`,
+
+`"-coof coof (uma tosse quebradora de clima super natural), muito bem alunos sentem-se, como estamos sem tempo não teremos como apresentar os novos alunos, então apenas bem vindos a nossa escola eu sou o Sr. Franky de biologia e não façam besteira nem tirem notas baixas ou vocês vão ser expulsos,"`,
+
+'" só isso, ah, semana que vem tem prova"',
+
+'com essas belas palavras tão impessoais quanto a pessoa que as proferiu começa o seu primeiro dia letivo'
+
+];
+
+
+
+const velocidade=35;
+
+const texto=document.getElementById("texto");
+
+const reiniciar=document.getElementById("reiniciar");
+
+let pagina=0;
+
+let letra=0;
+
+reiniciar.style.display="none";
+
+
+
+function escrever(){
+
+if(letra<dialogos[pagina].length){
+
+texto.innerHTML+=dialogos[pagina].charAt(letra);
+
+letra++;
+
+setTimeout(escrever,velocidade);
+
+}
+
+else{
+
+if(pagina<dialogos.length-1){
+
+setTimeout(proximaPagina,1000);
+
+}
+
+else{
+
+reiniciar.style.display="inline-block";
+
+}
+
+}
+
+}
+
+
+
+function proximaPagina(){
+
+texto.innerHTML="";
+
+letra=0;
+
+pagina++;
+
+escrever();
+
+}
+
+
+
+escrever();
+
+
+
+reiniciar.onclick=function(){
+
+pagina=0;
+
+letra=0;
+
+texto.innerHTML="";
+
+reiniciar.style.display="none";
+
+escrever();
+
+}
+
+</script>
+
+</body>
+
+</html>

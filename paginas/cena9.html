@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visual Novel</title>
+
+<link rel="stylesheet" href="../estilizacao/umbotao.css">
+
+</head>
+
+<body>
+
+<!--=============================================
+
+IMAGEM DE FUNDO
+
+Troque apenas o endereço abaixo.
+
+Exemplo:
+
+imagens/cenario1.jpg
+
+==============================================-->
+
+<div id="background"></div>
+
+
+<!--=============================================
+
+MÚSICA
+
+Troque apenas o src abaixo.
+
+Exemplo:
+
+audio/musica.mp3
+
+==============================================-->
+
+<audio autoplay loop>
+
+<source src="../musicas/WhatsApp Audio 2026-08-07 at 05.49.24.mp4" type="audio/mp4">
+
+</audio>
+
+
+
+<div class="dialogo">
+
+<div id="texto"></div>
+
+
+<div class="botoes">
+
+<a href="cena10.html">
+
+<button id="escolha">
+
+Continuar
+
+</button>
+
+</a>
+
+
+<button id="reiniciar">
+
+Recomeçar diálogo
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/*==============================================
+
+ESCREVA CADA TRECHO DA HISTÓRIA.
+
+Cada item será mostrado separadamente.
+
+==============================================*/
+
+const dialogos=[
+
+`quando os ânimos se acalmam você decide ver como está a pequena fada e ajudar a pegar seus livros dispostos no chão`,
+
+`"você está bem?"`,
+
+`é a sua primeira frase na escola consciente de que isso provavelmente indica uma mal começo e uma vergonha tremenda de forçar uma voz grave e um sotaque russo`,
+
+`"estou sim, isso é normal"`,
+
+`a criatura fala com um certo tom de melancolia por trás de cada letra`,
+
+`"normal?"`,
+
+`"quem é forte fica no topo e eu sou só o cara que vai fazer as lições de casa...`,
+
+`igual no ano passado...`,
+
+'bom esqueça isso, você é um estudante novo não é? Seja bem vindo à Mr. Hyde, eu sou o Aether é um prazer conhece-lo, AH!! ESTAMOS ATRASADOS PARA A AULA, VAMOS!!"'
+
+];
+
+
+
+const velocidade=35;
+
+const texto=document.getElementById("texto");
+
+const reiniciar=document.getElementById("reiniciar");
+
+let pagina=0;
+
+let letra=0;
+
+reiniciar.style.display="none";
+
+
+
+function escrever(){
+
+if(letra<dialogos[pagina].length){
+
+texto.innerHTML+=dialogos[pagina].charAt(letra);
+
+letra++;
+
+setTimeout(escrever,velocidade);
+
+}
+
+else{
+
+if(pagina<dialogos.length-1){
+
+setTimeout(proximaPagina,1000);
+
+}
+
+else{
+
+reiniciar.style.display="inline-block";
+
+}
+
+}
+
+}
+
+
+
+function proximaPagina(){
+
+texto.innerHTML="";
+
+letra=0;
+
+pagina++;
+
+escrever();
+
+}
+
+
+
+escrever();
+
+
+
+reiniciar.onclick=function(){
+
+pagina=0;
+
+letra=0;
+
+texto.innerHTML="";
+
+reiniciar.style.display="none";
+
+escrever();
+
+}
+
+</script>
+
+</body>
+
+</html>
