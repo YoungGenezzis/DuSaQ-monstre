@@ -15,6 +15,7 @@ body{
     font-family:"Segoe UI",Tahoma,sans-serif;
 
     color: #dcc9a9;;
+    background-color: #121312;
 
 }
 
@@ -23,22 +24,21 @@ body{
 IMAGEM DE FUNDO
 ======================================*/
 
-#background{
+#background {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
 
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
-    z-index:-1;
-
+#background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 
